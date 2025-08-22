@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  width: 960px;
+}
+@media only screen and (min-width: 1440px) {
+  .container {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .container {
+    width: 95%;
+  }
+}
+input.visited,
+select.visited {
+  @apply border-black;
+  @apply text-black;
+}
+.show-hide-content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+input[type="checkbox"] {
+  @apply h-12 w-12 aspect-square mr-4 text-3xl border-2 border-bg-info rounded-2xl bg-transparent hover:bg-bg-info/25;
+  appearance: none;
+  position: relative;
+}
+input[type="checkbox"]::before {
+  @apply absolute text-bg-info;
+  content: "+";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+input[type="checkbox"]:disabled {
+  @apply bg-bg-info/30;
+}
+input[type="checkbox"]:checked {
+  @apply bg-top-agrar-green/25;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulacja strączkowe</title>
+    <link rel="stylesheet" href="output.css" />
+
+    <!-- fonty -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="m-0 p-0 bg-top-agrar-green/10 flex justify-center font-body">
+    <div class="m-3 bg-white rounded-3xl container flex flex-col justify-start">
+      <div class="m-5 flex justify-between">
+        <div
+          class="text-2xl font-header font-bold flex justify-center items-center flex-1"
+        >
+          <p>Kalkulator opłacalności pszenicy</p>
+        </div>
+        <div class="h-full flex items-center justify-center">
+          <button
+            id="reset"
+            class="w-24 h-12 flex items-center justify-center border-top-agrar-green border-2 rounded-3xl text-2xl text-top-agrar-green hover:bg-top-agrar-green/25"
+          >
+            Resetuj
+          </button>
+        </div>
+      </div>
+      <div class="content">
+        <div class="w-11/12 border-t-2 border-b-2 border-black m-auto">
+          <div class="text-2xl text-center p-2">PRZYCHODY</div>
+        </div>
+        <div id="przychody-z-plonu"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="doplaty"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="ekoschematy"></div>
+        <div class="w-full flex justify-center text-2xl gap-2 mb-6 flex-wrap">
+          <div>Przychody razem:</div>
+          <div id="suma-przychodow" class="text-top-agrar-green">
+            podaj wartości
+          </div>
+        </div>
+        <div class="w-11/12 border-t-2 border-b-2 border-black m-auto">
+          <div class="text-2xl text-center p-2">KOSZTY</div>
+        </div>
+        <div id="badanie-gleby"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="wapno"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="miedzyplon"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="nawozy-naturlane"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="zabiegi-jesienne"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="material-siewny"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="glifosat"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="nawozenie-mineralne"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="nawozenie-mineralne-zabieg"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="nawozenie-dolistne"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="adiuwant"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="adiuwant-zabieg"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="biopreparat"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="biopreparat-zabieg"></div>
+        <div class="w-11/12 border-t-2 border-bg-info m-auto"></div>
+        <div id="zbior"></div>
+        <!-- <div class="w-11/12 border-t-2 border-bg-info m-auto"></div> -->
+        <div
+          class="w-full flex justify-center text-2xl gap-2 mt-4 mb-6 flex-wrap"
+        >
+          <div>Koszty razem:</div>
+          <div id="suma-kosztow" class="text-top-agrar-green">
+            podaj wartości
+          </div>
+        </div>
+        <div class="w-full flex justify-center text-2xl gap-2 mb-6 flex-wrap">
+          <div>Nadwyżka bezpośrednia:</div>
+          <div id="nadwyzka" class="text-top-agrar-green">podaj wartości</div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="calculatorClasses.js"></script>
+  <script src="calculatorUsage.js"></script>
+  <script src="mainScript.js"></script>
+</html>
