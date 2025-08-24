@@ -105,8 +105,8 @@ function mainContentLoad() {
         unit: "zł/ha",
       },
       {
-        id: "kwalifik",
-        name: "Kwalifik. mat. siewny:",
+        id: "material-siewny-kwalifik",
+        name: "Materiał siewny kwalifikowany lub elitarny:",
         placeholder: "",
         unit: "zł/ha",
       },
@@ -117,6 +117,8 @@ function mainContentLoad() {
     "all-check",
     (a, b, c, d, e, f, g, h, i, j) => a + b + c + d + e + f + g + h + i + j
   );
+  document.querySelector("#material-siewny-kwalifik-checkbox").disabled = true;
+
   new CalculatorBlock(
     "#badanie-gleby",
     "badanie gleby",

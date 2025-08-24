@@ -10,7 +10,7 @@ function format(inputString) {
     .replace(/[a-zA-Z]+/g, "");
 }
 document.addEventListener("input", (event) => {
-  if (!event.srcElement.classList.contains("textInput")) {
+  if (!event.target.classList.contains("textInput")) {
     const inputField = event.target;
     inputField.value = format(inputField.value);
   }
@@ -66,14 +66,14 @@ const exclusionMap = {
   ],
   "biologiczna-checkbox": ["integrowana-checkbox"],
   "nawozenie-checkbox": [""],
-  "kwalifik-checkbox": ["integrowana-checkbox"],
+  "material-siewny-kwalifik-checkbox": ["integrowana-checkbox"],
 };
 
 document.addEventListener("change", (event) => {
   if (!event.target.matches('input[type="checkbox"]')) return;
 
   let ekoschematy = document.querySelectorAll(
-    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #systemy-checkbox, #sloma-gleba-checkbox, #integrowana-checkbox, #biologiczna-checkbox, #nawozenie-checkbox, #kwalifik-checkbox"
+    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #systemy-checkbox, #sloma-gleba-checkbox, #integrowana-checkbox, #biologiczna-checkbox, #nawozenie-checkbox, #kwalifik-checkbox, #material-siewny-kwalifik-checkbox"
   );
 
   ekoschematy.forEach((checkbox) => (checkbox.disabled = false));
@@ -88,6 +88,18 @@ document.addEventListener("change", (event) => {
       }
     });
   });
+
+  let needToMaterialSiewny = document.querySelectorAll(
+    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #systemy-checkbox, #sloma-gleba-checkbox"
+  );
+
+  const materialSiewnyCheckbox = document.querySelector(
+    "#material-siewny-kwalifik-checkbox"
+  );
+  const anyChecked = Array.from(needToMaterialSiewny).some(
+    (checkbox) => checkbox.checked
+  );
+  materialSiewnyCheckbox.disabled = !anyChecked;
 });
 
 document.querySelector("#reset").addEventListener("click", function () {
@@ -100,8 +112,6 @@ document.querySelector("#reset").addEventListener("click", function () {
   document.querySelector("#nawozy-naturlane").innerHTML = "";
   document.querySelector("#zabiegi-jesienne").innerHTML = "";
   document.querySelector("#glifosat").innerHTML = "";
-  document.querySelector("#material-siewny").innerHTML = "";
-  document.querySelector("#zabiegi-wiosenne").innerHTML = "";
   document.querySelector("#nawozenie-mineralne").innerHTML = "";
   document.querySelector("#nawozenie-dolistne").innerHTML = "";
   document.querySelector("#nawozenie-mineralne-zabieg").innerHTML = "";
