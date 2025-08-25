@@ -34,9 +34,21 @@ function mainContentLoad() {
         unit: "zł/ha",
       },
       {
-        id: "stracz",
-        name: "Płatność do strącz. na nasiona:",
-        placeholder: "794.08",
+        id: "mlodych-rolnikow",
+        name: "Płatność dla młodych rolników:",
+        placeholder: "257",
+        unit: "zł/ha",
+      },
+      {
+        id: "uzupelniajaca",
+        name: "Płatność uzupełniająca:",
+        placeholder: "69",
+        unit: "zł/ha",
+      },
+      {
+        id: "de-minimis",
+        name: "de minimis do kwalifikatu:",
+        placeholder: "65",
         unit: "zł/ha",
       },
     ],
@@ -44,7 +56,7 @@ function mainContentLoad() {
     "zł/ha",
     "*domyślne wartości za rok 2024, wykasuj i wpisz aktualne. Kliknij + aby uwzględnić w kalkulacji",
     "all-check",
-    (a, b, c) => a + b + c
+    (a, b, c, d, e) => a + b + c + d + e
   );
   new CalculatorBlock(
     "#ekoschematy",
@@ -107,7 +119,7 @@ function mainContentLoad() {
       {
         id: "material-siewny-kwalifik",
         name: "Materiał siewny kwalifikowany lub elitarny:",
-        placeholder: "",
+        placeholder: "113.82",
         unit: "zł/ha",
       },
     ],
@@ -348,41 +360,6 @@ function mainContentLoad() {
     (a, b, c, d) => a * b + c * d
   );
   new CalculatorBlock(
-    "#material-siewny",
-    "materiał siewny",
-    [
-      {
-        id: "cena-nasion-material",
-        name: "Cena nasion:",
-        placeholder: "za 1 kg lub js.",
-        unit: "zł/kg, js.",
-      },
-      {
-        id: "dawka-nasion-na-ha",
-        name: "Dawka nasion na ha:",
-        placeholder: "dawka kg lub js. na ha",
-        unit: "kg, js./ha",
-      },
-      {
-        id: "Cena zaprawy nasiennej",
-        name: "Cena zaprawy nasiennej:",
-        placeholder: "cena zaprawy",
-        unit: "zł/l, kg",
-      },
-      {
-        id: "dawka-zaprawy",
-        name: "Dawka zaprawy:",
-        placeholder: "dawka zaprawy",
-        unit: "l, kg/100 kg",
-      },
-    ],
-    "Koszt nasion",
-    "zł/ha",
-    "",
-    "one-check",
-    (a, b, e, f) => a * b + (e * f * b) / 100
-  );
-  new CalculatorBlock(
     "#zbior",
     "zbiór",
     [
@@ -500,7 +477,6 @@ function mainContentLoad() {
   );
   document.querySelector("#podst-wsp-doch").value = "483.2";
   document.querySelector("#redystr").value = "168.79";
-  document.querySelector("#stracz").value = "794.08";
   document.querySelector("#miedzyplony").value = "435.1";
   document.querySelector("#nawozenie-podst").value = "87.02";
   document.querySelector("#nawozenie-wapnow").value = "261.06";
@@ -510,6 +486,8 @@ function mainContentLoad() {
   document.querySelector("#integrowana").value = "818.92";
   document.querySelector("#biologiczna").value = "300.06";
   document.querySelector("#nawozenie").value = "75.01";
+  // document.querySelector("#nawozenie-material-siewny-kwalifik").value =
+  //   "113.82";
 
   new dynamicCalculatorBlock(
     "#nawozenie-mineralne",

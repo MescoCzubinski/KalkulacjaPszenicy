@@ -62,7 +62,7 @@ const exclusionMap = {
     "nawozenie-podst-checkbox",
     "nawozenie-wapnow-checkbox",
     "biologiczna-checkbox",
-    "kwalifik-checkbox",
+    "material-siewny-kwalifik-checkbox",
   ],
   "biologiczna-checkbox": ["integrowana-checkbox"],
   "nawozenie-checkbox": [""],
@@ -72,12 +72,11 @@ const exclusionMap = {
 document.addEventListener("change", (event) => {
   if (!event.target.matches('input[type="checkbox"]')) return;
 
+  //wykluczenia
   let ekoschematy = document.querySelectorAll(
     "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #systemy-checkbox, #sloma-gleba-checkbox, #integrowana-checkbox, #biologiczna-checkbox, #nawozenie-checkbox, #kwalifik-checkbox, #material-siewny-kwalifik-checkbox"
   );
-
   ekoschematy.forEach((checkbox) => (checkbox.disabled = false));
-
   ekoschematy.forEach((checkbox) => {
     let excludedIds = exclusionMap[checkbox.id] || [];
     excludedIds.forEach((excludedId) => {
@@ -89,17 +88,35 @@ document.addEventListener("change", (event) => {
     });
   });
 
+  // wymagane do odblokowania
   let needToMaterialSiewny = document.querySelectorAll(
     "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #systemy-checkbox, #sloma-gleba-checkbox"
-  );
-
-  const materialSiewnyCheckbox = document.querySelector(
-    "#material-siewny-kwalifik-checkbox"
   );
   const anyChecked = Array.from(needToMaterialSiewny).some(
     (checkbox) => checkbox.checked
   );
-  materialSiewnyCheckbox.disabled = !anyChecked;
+
+  //odblokowanie
+  const materialSiewnyCheckbox = document.querySelector(
+    "#material-siewny-kwalifik-checkbox"
+  );
+  const integrowanaCheckbox = document.querySelector("#integrowana-checkbox");
+  if (!integrowanaCheckbox.checked) {
+    materialSiewnyCheckbox.disabled = !anyChecked;
+  }
+
+  if (materialSiewnyCheckbox.disabled) {
+    materialSiewnyCheckbox.checked = false;
+    integrowanaCheckbox.disabled = false;
+    document.dispatchEvent(new Event("recalculate"));
+  }
+
+  const deMinimisCheckbox = document.querySelector("#de-minimis-checkbox");
+  if (deMinimisCheckbox.checked) {
+    materialSiewnyCheckbox.checked = false;
+    materialSiewnyCheckbox.disabled = true;
+    document.dispatchEvent(new Event("recalculate"));
+  }
 });
 
 document.querySelector("#reset").addEventListener("click", function () {

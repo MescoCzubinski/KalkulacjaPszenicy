@@ -193,6 +193,7 @@ class CalculatorBlock {
       );
       if (inputCheckboxElement) {
         inputCheckboxElement.addEventListener("change", () => {
+          console.log(inputCheckboxElement);
           this.calculateResult();
         });
       }
@@ -224,6 +225,11 @@ class CalculatorBlock {
       }
       recalculateSectionHeight();
     };
+
+    // Listen for custom event to recalculate when materialSiewnyCheckbox state changes
+    document.addEventListener("recalculate", () => {
+      this.calculateResult();
+    });
   }
 }
 class dynamicCalculatorBlock {
@@ -499,6 +505,11 @@ class dynamicCalculatorBlock {
         this.calculateMainResult();
         recalculateSectionHeight();
       });
+
+    // Listen for custom event to recalculate when materialSiewnyCheckbox state changes
+    document.addEventListener("materialSiewnyStateChanged", () => {
+      this.calculateMainResult();
+    });
   }
 
   calculateMainResult() {
