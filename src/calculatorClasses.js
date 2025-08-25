@@ -24,24 +24,35 @@ class CalculatorBlock {
   }
 
   render() {
-    let section = document.createElement("div");
+    const section = document.createElement("div");
     section.classList.add("w-80", "p-3", "flex", "flex-col", "justify-start");
 
-    let inputsContainer = document.createElement("div");
+    const inputsContainer = document.createElement("div");
 
     this.inputs.forEach((inputData) => {
-      let inputWrapper = document.createElement("div");
+      const inputWrapper = document.createElement("div");
       inputWrapper.classList.add("mb-5");
 
-      let inputContainer = document.createElement("div");
+      const inputContainer = document.createElement("div");
       inputContainer.classList.add("flex");
 
-      let inputName = document.createElement("div");
+      const inputName = document.createElement("div");
       inputName.classList.add("text-xl", "pb-2", "pl-2");
-      inputName.textContent = inputData.name;
+      if (inputData.id === "de-minimis") {
+        const inputNameItalic = document.createElement("span");
+        inputNameItalic.classList.add("italic");
+        inputNameItalic.textContent = "De minimis";
+        const inputNameRest = document.createElement("span");
+        inputNameRest.textContent = "  do kwalifikatu:";
+
+        inputName.appendChild(inputNameItalic);
+        inputName.appendChild(inputNameRest);
+      } else {
+        inputName.textContent = inputData.name;
+      }
 
       if (this.checkMode === "all-check") {
-        let checkboxInput = document.createElement("input");
+        const checkboxInput = document.createElement("input");
         checkboxInput.type = "checkbox";
         checkboxInput.classList.add("mr-4");
         checkboxInput.id = `${inputData.id
@@ -52,7 +63,7 @@ class CalculatorBlock {
         inputContainer.appendChild(checkboxInput);
       }
 
-      let inputElement = document.createElement("input");
+      const inputElement = document.createElement("input");
       inputElement.type = "text";
       inputElement.inputMode = "numeric";
       inputElement.pattern = "[0-9]*";
@@ -70,7 +81,7 @@ class CalculatorBlock {
         "hover:bg-bg-info/25"
       );
 
-      let unitElement = document.createElement("div");
+      const unitElement = document.createElement("div");
       unitElement.classList.add("ml-2", "text-xl", "flex", "items-center");
       unitElement.textContent = inputData.unit;
 
@@ -85,7 +96,7 @@ class CalculatorBlock {
     });
 
     if (this.backgroundInfo !== "") {
-      let backgroundInfoContainer = document.createElement("div");
+      const backgroundInfoContainer = document.createElement("div");
       backgroundInfoContainer.classList.add(
         "text-xl",
         "text-bg-info",
@@ -98,14 +109,14 @@ class CalculatorBlock {
 
     section.appendChild(inputsContainer);
 
-    let resultContainer = document.createElement("div");
+    const resultContainer = document.createElement("div");
     resultContainer.classList.add("flex", "pl-2", "pr-2", "justify-between");
 
-    let resultText = document.createElement("div");
+    const resultText = document.createElement("div");
     resultText.classList.add("text-xl", "text-center");
     resultText.textContent = this.resultText;
 
-    let resultValue = document.createElement("div");
+    const resultValue = document.createElement("div");
     resultValue.classList.add("text-xl", "text-top-agrar-green", "text-center");
     resultValue.textContent = "podaj wartości";
     resultValue.id = `${this.containerId
@@ -117,7 +128,7 @@ class CalculatorBlock {
     section.appendChild(resultContainer);
 
     if (this.checkMode === "one-check") {
-      let checkboxContainer = document.createElement("div");
+      const checkboxContainer = document.createElement("div");
       checkboxContainer.classList.add(
         "flex",
         "flex-wrap",
@@ -128,11 +139,11 @@ class CalculatorBlock {
         "mt-4"
       );
 
-      let checkboxText = document.createElement("div");
+      const checkboxText = document.createElement("div");
       checkboxText.classList.add("text-xl", "text-left");
       checkboxText.textContent = "Zatwierdź w kalkulacji:";
 
-      let checkboxInput = document.createElement("input");
+      const checkboxInput = document.createElement("input");
       checkboxInput.type = "checkbox";
       checkboxInput.id = `${this.containerId
         .replaceAll("#", "")
@@ -143,7 +154,7 @@ class CalculatorBlock {
       section.appendChild(checkboxContainer);
     }
 
-    let containerHeader = document.createElement("div");
+    const containerHeader = document.createElement("div");
     containerHeader.classList.add(
       "flex",
       "w-full",
@@ -153,11 +164,11 @@ class CalculatorBlock {
       "p-3"
     );
 
-    let headerName = document.createElement("div");
+    const headerName = document.createElement("div");
     headerName.classList.add("text-2xl", "font-bold", "pt-1");
     headerName.textContent = this.containerName.toUpperCase();
 
-    let headerButton = document.createElement("button");
+    const headerButton = document.createElement("button");
     headerButton.classList.add(
       "show-hide-button",
       "border-bg-info",
@@ -170,7 +181,7 @@ class CalculatorBlock {
     containerHeader.appendChild(headerName);
     containerHeader.appendChild(headerButton);
 
-    let containerContent = document.createElement("div");
+    const containerContent = document.createElement("div");
     containerContent.classList.add(
       "show-hide-content",
       "flex",
@@ -261,15 +272,15 @@ class dynamicCalculatorBlock {
     this.render();
   }
   sectionRender() {
-    let section = document.createElement("div");
+    const section = document.createElement("div");
     section.classList.add("w-80", "p-3", "flex", "flex-col", "justify-start");
     section.dataset.sectionId = this.sectionsId;
 
-    let inputsContainer = document.createElement("div");
+    const inputsContainer = document.createElement("div");
 
-    let sectionHeader = document.createElement("div");
+    const sectionHeader = document.createElement("div");
     sectionHeader.classList.add("flex");
-    let inputName = document.createElement("input");
+    const inputName = document.createElement("input");
     inputName.type = "text";
     inputName.id = this.containerName + "-" + this.sectionsId;
     inputName.placeholder = this.sectionName;
@@ -285,7 +296,7 @@ class dynamicCalculatorBlock {
       "hover:bg-bg-info/25",
       "textInput"
     );
-    let buttonDelete = document.createElement("input");
+    const buttonDelete = document.createElement("input");
     buttonDelete.type = "button";
     buttonDelete.value = "usuń";
     buttonDelete.classList.add(
@@ -307,17 +318,17 @@ class dynamicCalculatorBlock {
     let sectionInputs = [];
 
     this.inputs.forEach((inputData) => {
-      let inputWrapper = document.createElement("div");
+      const inputWrapper = document.createElement("div");
       inputWrapper.classList.add("mb-5");
 
-      let inputContainer = document.createElement("div");
+      const inputContainer = document.createElement("div");
       inputContainer.classList.add("flex");
 
-      let inputLabel = document.createElement("div");
+      const inputLabel = document.createElement("div");
       inputLabel.classList.add("text-xl", "pb-2", "pl-2");
       inputLabel.textContent = inputData.name;
 
-      let inputElement = document.createElement("input");
+      const inputElement = document.createElement("input");
       inputElement.type = "text";
       inputElement.inputMode = "numeric";
       inputElement.pattern = "[0-9]*";
@@ -335,7 +346,7 @@ class dynamicCalculatorBlock {
         "hover:bg-bg-info/25"
       );
 
-      let unitElement = document.createElement("div");
+      const unitElement = document.createElement("div");
       unitElement.classList.add("ml-2", "text-xl", "flex", "items-center");
       unitElement.textContent = inputData.unit;
 
@@ -352,14 +363,14 @@ class dynamicCalculatorBlock {
     section.appendChild(sectionHeader);
     section.appendChild(inputsContainer);
 
-    let resultContainer = document.createElement("div");
+    const resultContainer = document.createElement("div");
     resultContainer.classList.add("flex", "pl-2", "pr-2", "justify-between");
 
-    let resultText = document.createElement("div");
+    const resultText = document.createElement("div");
     resultText.classList.add("text-xl", "text-center");
     resultText.textContent = this.resultText;
 
-    let resultValue = document.createElement("div");
+    const resultValue = document.createElement("div");
     resultValue.classList.add("text-xl", "text-top-agrar-green", "text-center");
     resultValue.textContent = "podaj wartości";
     resultValue.id = `${
@@ -408,7 +419,7 @@ class dynamicCalculatorBlock {
   }
 
   render() {
-    let containerHeader = document.createElement("div");
+    const containerHeader = document.createElement("div");
     containerHeader.classList.add(
       "flex",
       "w-full",
@@ -418,11 +429,11 @@ class dynamicCalculatorBlock {
       "p-3"
     );
 
-    let headerName = document.createElement("div");
+    const headerName = document.createElement("div");
     headerName.classList.add("text-2xl", "font-bold", "pt-1");
     headerName.textContent = this.containerName.toUpperCase();
 
-    let headerButton = document.createElement("button");
+    const headerButton = document.createElement("button");
     headerButton.classList.add(
       "show-hide-button",
       "border-bg-info",
@@ -435,10 +446,10 @@ class dynamicCalculatorBlock {
     containerHeader.appendChild(headerName);
     containerHeader.appendChild(headerButton);
 
-    let containerContent = document.createElement("div");
+    const containerContent = document.createElement("div");
     containerContent.classList.add("show-hide-content");
 
-    let containerSections = document.createElement("div");
+    const containerSections = document.createElement("div");
     containerSections.classList.add(
       "flex",
       "flex-wrap",
@@ -450,7 +461,7 @@ class dynamicCalculatorBlock {
     });
     containerContent.appendChild(containerSections);
 
-    let buttonAdd = document.createElement("input");
+    const buttonAdd = document.createElement("input");
     buttonAdd.type = "button";
     buttonAdd.value = "dodaj kolejny";
     buttonAdd.classList.add(
@@ -471,7 +482,7 @@ class dynamicCalculatorBlock {
     );
     containerContent.appendChild(buttonAdd);
 
-    let sectionResult = document.createElement("div");
+    const sectionResult = document.createElement("div");
     sectionResult.classList.add(
       "flex",
       "w-full",
@@ -481,9 +492,9 @@ class dynamicCalculatorBlock {
       "mt-4",
       "mb-4"
     );
-    let sectionRenderText = document.createElement("div");
+    const sectionRenderText = document.createElement("div");
     sectionRenderText.textContent = this.resultText;
-    let sectionRenderResult = document.createElement("div");
+    const sectionRenderResult = document.createElement("div");
     sectionRenderResult.id = this.containerId.replace("#", "") + "-result";
     sectionRenderResult.classList.add("text-top-agrar-green");
     sectionRenderResult.textContent = "podaj wartości";

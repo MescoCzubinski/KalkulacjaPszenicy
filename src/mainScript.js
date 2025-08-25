@@ -56,6 +56,15 @@ const exclusionMap = {
     "nawozenie-podst-checkbox",
   ],
   "struktura-checkbox": [""],
+  "obornik-12-checkbox": [
+    "naturalne-nierozbyrzgowo-checkbox",
+    "systemy-checkbox",
+    "sloma-gleba-checkbox",
+  ],
+  "naturalne-nierozbyrzgowo-checkbox": [
+    "obornik-12-checkbox",
+    "sloma-gleba-checkbox",
+  ],
   "systemy-checkbox": ["miedzyplony-checkbox", "sloma-gleba-checkbox"],
   "sloma-gleba-checkbox": ["miedzyplony-checkbox", "systemy-checkbox"],
   "integrowana-checkbox": [
@@ -74,7 +83,7 @@ document.addEventListener("change", (event) => {
 
   //wykluczenia
   let ekoschematy = document.querySelectorAll(
-    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #systemy-checkbox, #sloma-gleba-checkbox, #integrowana-checkbox, #biologiczna-checkbox, #nawozenie-checkbox, #kwalifik-checkbox, #material-siewny-kwalifik-checkbox"
+    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #obornik-12-checkbox, #naturalne-nierozbyrzgowo-checkbox, #systemy-checkbox, #sloma-gleba-checkbox, #integrowana-checkbox, #biologiczna-checkbox, #nawozenie-checkbox, #kwalifik-checkbox, #material-siewny-kwalifik-checkbox"
   );
   ekoschematy.forEach((checkbox) => (checkbox.disabled = false));
   ekoschematy.forEach((checkbox) => {
@@ -90,7 +99,7 @@ document.addEventListener("change", (event) => {
 
   // wymagane do odblokowania
   let needToMaterialSiewny = document.querySelectorAll(
-    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #systemy-checkbox, #sloma-gleba-checkbox"
+    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #obornik-12-checkbox, #naturalne-nierozbyrzgowo-checkbox, #systemy-checkbox, #sloma-gleba-checkbox"
   );
   const anyChecked = Array.from(needToMaterialSiewny).some(
     (checkbox) => checkbox.checked

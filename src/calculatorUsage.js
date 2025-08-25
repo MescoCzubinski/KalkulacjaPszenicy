@@ -10,12 +10,18 @@ function mainContentLoad() {
         unit: "t/ha",
       },
       { id: "cena-skupu", name: "Cena skupu:", placeholder: "", unit: "zł/t" },
+      {
+        id: "ewentualna-doplata",
+        name: "Ewentualna dopłata:",
+        placeholder: "",
+        unit: "zł/t",
+      },
     ],
     "Wartość plonu:",
     "zł/ha",
     "",
     "no-check",
-    (a, b) => a * b
+    (a, b, c) => a * b + a * c
   );
   new CalculatorBlock(
     "#doplaty",
@@ -24,7 +30,7 @@ function mainContentLoad() {
       {
         id: "podst-wsp-doch",
         name: "Podstawowe wsparcie dochodów:",
-        placeholder: "483.2",
+        placeholder: "483.20",
         unit: "zł/ha",
       },
       {
@@ -36,19 +42,19 @@ function mainContentLoad() {
       {
         id: "mlodych-rolnikow",
         name: "Płatność dla młodych rolników:",
-        placeholder: "257",
+        placeholder: "256.55",
         unit: "zł/ha",
       },
       {
         id: "uzupelniajaca",
-        name: "Płatność uzupełniająca:",
-        placeholder: "69",
+        name: "Uzupełniająca płatność podst.:",
+        placeholder: "63.22",
         unit: "zł/ha",
       },
       {
         id: "de-minimis",
         name: "de minimis do kwalifikatu:",
-        placeholder: "65",
+        placeholder: "np. 65",
         unit: "zł/ha",
       },
     ],
@@ -87,8 +93,20 @@ function mainContentLoad() {
         unit: "zł/ha",
       },
       {
+        id: "obornik-12",
+        name: "Wymieszanie obornika w ciągu 12 godz.:",
+        placeholder: "174.04",
+        unit: "zł/ha",
+      },
+      {
+        id: "naturalne-nierozbyrzgowo",
+        name: "Nawozy naturalne, płynne, nierozbryzgowo:",
+        placeholder: "261.06",
+        unit: "zł/ha",
+      },
+      {
         id: "systemy",
-        name: "Zróżnicowana struktura upraw:",
+        name: "Uproszczone systemy uprawy:",
         placeholder: "251.94",
         unit: "zł/ha",
       },
@@ -136,20 +154,32 @@ function mainContentLoad() {
     "badanie gleby",
     [
       {
-        id: "cena-badania",
-        name: "Cena badania:",
+        id: "cena-badania-rok",
+        name: "Cena corocznego badania:",
         placeholder: "koszt 1 próbki",
         unit: "zł/próbkę",
       },
       {
-        id: "pow-badania",
-        name: "Powierzch. badania:",
+        id: "pow-badania-rok",
+        name: "Powierzchnia corocznego badania:",
+        placeholder: "pow. dla 1 próbki",
+        unit: "ha",
+      },
+      {
+        id: "cena-badania-wiele",
+        name: "Cena wieloletniego badania:",
+        placeholder: "koszt 1 próbki",
+        unit: "zł/próbkę",
+      },
+      {
+        id: "pow-badania-wiele",
+        name: "Powierzchnia wieloletniego badania:",
         placeholder: "pow. dla 1 próbki",
         unit: "ha",
       },
       {
         id: "czestosc",
-        name: "Częstość:",
+        name: "Częstość wieloletniego badania:",
         placeholder: "co ile lat badanie",
         unit: "lat",
       },
@@ -158,7 +188,7 @@ function mainContentLoad() {
     "zł/ha/rok",
     "",
     "no-check",
-    (a, b, c) => a / b / c
+    (a, b, c, d, e) => a / b + c / d / e
   );
   new CalculatorBlock(
     "#wapno",
@@ -475,12 +505,16 @@ function mainContentLoad() {
     "one-check",
     (a, b) => a * b
   );
-  document.querySelector("#podst-wsp-doch").value = "483.2";
+  document.querySelector("#podst-wsp-doch").value = "483.20";
   document.querySelector("#redystr").value = "168.79";
-  document.querySelector("#miedzyplony").value = "435.1";
+  document.querySelector("#mlodych-rolnikow").value = "256.55";
+  document.querySelector("#uzupelniajaca").value = "63.22";
+  document.querySelector("#miedzyplony").value = "435.10";
   document.querySelector("#nawozenie-podst").value = "87.02";
   document.querySelector("#nawozenie-wapnow").value = "261.06";
   document.querySelector("#struktura").value = "225.01";
+  document.querySelector("#obornik-12").value = "174.04";
+  document.querySelector("#naturalne-nierozbyrzgowo").value = "261.06";
   document.querySelector("#systemy").value = "251.94";
   document.querySelector("#sloma-gleba").value = "134.6";
   document.querySelector("#integrowana").value = "818.92";
