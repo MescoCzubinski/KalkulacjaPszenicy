@@ -204,7 +204,6 @@ class CalculatorBlock {
       );
       if (inputCheckboxElement) {
         inputCheckboxElement.addEventListener("change", () => {
-          console.log(inputCheckboxElement);
           this.calculateResult();
         });
       }

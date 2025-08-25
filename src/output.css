@@ -909,11 +909,11 @@ input[type="checkbox"]::before {
 }
 
 input[type="checkbox"]:disabled {
-  background-color: rgb(163 163 163 / 0.3);
+  background-color: rgb(163 163 163 / 0.6);
 }
 
 input[type="checkbox"]:checked {
-  background-color: rgb(0 132 55 / 0.25);
+  background-color: rgb(0 132 55 / 0.6);
 }
 
 .hover\:bg-bg-info\/25:hover {

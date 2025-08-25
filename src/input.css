@@ -39,8 +39,8 @@ input[type="checkbox"]::before {
   transform: translate(-50%, -50%);
 }
 input[type="checkbox"]:disabled {
-  @apply bg-bg-info/30;
+  @apply bg-bg-info/60;
 }
 input[type="checkbox"]:checked {
-  @apply bg-top-agrar-green/25;
+  @apply bg-top-agrar-green/60;
 }

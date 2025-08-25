@@ -100,7 +100,7 @@ function mainContentLoad() {
       },
       {
         id: "naturalne-nierozbyrzgowo",
-        name: "Nawozy naturalne, płynne, nierozbryzgowo:",
+        name: "Nawozy naturalne płynne nierozbryzgowo:",
         placeholder: "261.06",
         unit: "zł/ha",
       },
@@ -145,7 +145,8 @@ function mainContentLoad() {
     "zł/ha",
     "*domyślne wartości za rok 2024, wykasuj i wpisz aktualne. Kliknij + aby uwzględnić w kalkulacji",
     "all-check",
-    (a, b, c, d, e, f, g, h, i, j) => a + b + c + d + e + f + g + h + i + j
+    (a, b, c, d, e, f, g, h, i, j, k, l) =>
+      a + b + c + d + e + f + g + h + i + j + k + l
   );
   document.querySelector("#material-siewny-kwalifik-checkbox").disabled = true;
 
@@ -154,41 +155,41 @@ function mainContentLoad() {
     "badanie gleby",
     [
       {
-        id: "cena-badania-rok",
-        name: "Cena corocznego badania:",
-        placeholder: "koszt 1 próbki",
-        unit: "zł/próbkę",
-      },
-      {
-        id: "pow-badania-rok",
-        name: "Powierzchnia corocznego badania:",
-        placeholder: "pow. dla 1 próbki",
-        unit: "ha",
-      },
-      {
         id: "cena-badania-wiele",
-        name: "Cena wieloletniego badania:",
+        name: "Cena badania podstawowego:",
         placeholder: "koszt 1 próbki",
         unit: "zł/próbkę",
       },
       {
         id: "pow-badania-wiele",
-        name: "Powierzchnia wieloletniego badania:",
+        name: "Powierzchnia badania podstawowego:",
         placeholder: "pow. dla 1 próbki",
         unit: "ha",
       },
       {
         id: "czestosc",
-        name: "Częstość wieloletniego badania:",
+        name: "Częstość badania podstawowego:",
         placeholder: "co ile lat badanie",
         unit: "lat",
+      },
+      {
+        id: "cena-badania-rok",
+        name: "Cena badania na azot mineralny:",
+        placeholder: "koszt 1 próbki",
+        unit: "zł/próbkę",
+      },
+      {
+        id: "pow-badania-rok",
+        name: "Powierzchnia badaniana na azot mineralny:",
+        placeholder: "pow. dla 1 próbki",
+        unit: "ha",
       },
     ],
     "Koszt badania:",
     "zł/ha/rok",
     "",
     "no-check",
-    (a, b, c, d, e) => a / b + c / d / e
+    (a, b, c, d, e) => (a / b / c || 0) + (d / e || 0)
   );
   new CalculatorBlock(
     "#wapno",
@@ -324,9 +325,9 @@ function mainContentLoad() {
         unit: "zł/ha",
       },
       {
-        id: "siew-miedzyplonu",
-        name: "Koszt siewu międzyplonu:",
-        placeholder: "koszt siewu",
+        id: "trzecia-oprawa",
+        name: "Trzecia uprawa samosiewów:",
+        placeholder: "koszt uprawy",
         unit: "zł/ha",
       },
       {
@@ -394,8 +395,8 @@ function mainContentLoad() {
     "zbiór",
     [
       {
-        id: "cena-koszenia",
-        name: "Cena koszenia:",
+        id: "kombajn-koszt",
+        name: "Koszt zbioru kombajnem:",
         placeholder: "koszt kombajnu na 1 ha",
         unit: "zł/ha",
       },
@@ -461,7 +462,7 @@ function mainContentLoad() {
   );
   new CalculatorBlock(
     "#adiuwant-zabieg",
-    "Zabieg opryskiwanie",
+    "Zabieg opryskiwania",
     [
       {
         id: "koszt-opryskiwania-ad",

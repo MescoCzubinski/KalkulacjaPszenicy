@@ -65,8 +65,17 @@ const exclusionMap = {
     "obornik-12-checkbox",
     "sloma-gleba-checkbox",
   ],
-  "systemy-checkbox": ["miedzyplony-checkbox", "sloma-gleba-checkbox"],
-  "sloma-gleba-checkbox": ["miedzyplony-checkbox", "systemy-checkbox"],
+  "systemy-checkbox": [
+    "miedzyplony-checkbox",
+    "sloma-gleba-checkbox",
+    "obornik-12-checkbox",
+  ],
+  "sloma-gleba-checkbox": [
+    "miedzyplony-checkbox",
+    "systemy-checkbox",
+    "naturalne-nierozbyrzgowo-checkbox",
+    "obornik-12-checkbox",
+  ],
   "integrowana-checkbox": [
     "nawozenie-podst-checkbox",
     "nawozenie-wapnow-checkbox",
@@ -83,7 +92,7 @@ document.addEventListener("change", (event) => {
 
   //wykluczenia
   let ekoschematy = document.querySelectorAll(
-    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #obornik-12-checkbox, #naturalne-nierozbyrzgowo-checkbox, #systemy-checkbox, #sloma-gleba-checkbox, #integrowana-checkbox, #biologiczna-checkbox, #nawozenie-checkbox, #kwalifik-checkbox, #material-siewny-kwalifik-checkbox"
+    "#miedzyplony-checkbox, #nawozenie-podst-checkbox, #nawozenie-wapnow-checkbox, #struktura-checkbox, #obornik-12-checkbox, #naturalne-nierozbyrzgowo-checkbox, #systemy-checkbox, #sloma-gleba-checkbox, #integrowana-checkbox, #biologiczna-checkbox, #nawozenie-checkbox, #material-siewny-kwalifik-checkbox"
   );
   ekoschematy.forEach((checkbox) => (checkbox.disabled = false));
   ekoschematy.forEach((checkbox) => {
@@ -96,6 +105,15 @@ document.addEventListener("change", (event) => {
       }
     });
   });
+
+  const checkedEkoschematy = Array.from(ekoschematy).filter((cb) => cb.checked);
+  if (checkedEkoschematy.length === 2) {
+    ekoschematy.forEach((checkbox) => {
+      if (!checkbox.checked) {
+        checkbox.disabled = true;
+      }
+    });
+  }
 
   // wymagane do odblokowania
   let needToMaterialSiewny = document.querySelectorAll(
@@ -110,13 +128,20 @@ document.addEventListener("change", (event) => {
     "#material-siewny-kwalifik-checkbox"
   );
   const integrowanaCheckbox = document.querySelector("#integrowana-checkbox");
-  if (!integrowanaCheckbox.checked) {
+  const biologicznaCheckbox = document.querySelector("#biologiczna-checkbox");
+  if (!integrowanaCheckbox.checked && checkedEkoschematy.length < 2) {
     materialSiewnyCheckbox.disabled = !anyChecked;
   }
 
   if (materialSiewnyCheckbox.disabled) {
     materialSiewnyCheckbox.checked = false;
-    integrowanaCheckbox.disabled = false;
+    if (biologicznaCheckbox.checked) {
+      biologicznaCheckbox.checked = true;
+    } else {
+      if (checkedEkoschematy.length !== 2) {
+        integrowanaCheckbox.disabled = false;
+      }
+    }
     document.dispatchEvent(new Event("recalculate"));
   }
 
