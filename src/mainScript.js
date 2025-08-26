@@ -163,6 +163,7 @@ document.querySelector("#reset").addEventListener("click", function () {
   document.querySelector("#nawozy-naturlane").innerHTML = "";
   document.querySelector("#zabiegi-jesienne").innerHTML = "";
   document.querySelector("#glifosat").innerHTML = "";
+  document.querySelector("#material-siewny").innerHTML = "";
   document.querySelector("#nawozenie-mineralne").innerHTML = "";
   document.querySelector("#nawozenie-dolistne").innerHTML = "";
   document.querySelector("#nawozenie-mineralne-zabieg").innerHTML = "";
@@ -171,6 +172,7 @@ document.querySelector("#reset").addEventListener("click", function () {
   document.querySelector("#adiuwant").innerHTML = "";
   document.querySelector("#biopreparat").innerHTML = "";
   document.querySelector("#zbior").innerHTML = "";
+  document.querySelector("#inne-koszty").innerHTML = "";
   mainContentLoad();
 });
 
@@ -208,6 +210,7 @@ function calculateSum() {
     "#biopreparat-result",
     "#biopreparat-zabieg-result",
     "#zbior-result",
+    "#inne-koszty-result",
   ];
 
   let koszt = kosztyElements.reduce((sum, selector) => {

@@ -199,13 +199,13 @@ function mainContentLoad() {
         id: "cena-wapna",
         name: "Cena wapna:",
         placeholder: "koszt 1 t wapna",
-        unit: "zł/ha",
+        unit: "zł/t",
       },
       {
         id: "dawka-ha-wapna",
         name: "Dawka na ha:",
         placeholder: "dawka na 1 ha",
-        unit: "zł/ha",
+        unit: "t/ha",
       },
       {
         id: "koszt-rozsiewu",
@@ -343,9 +343,15 @@ function mainContentLoad() {
         unit: "zł/ha",
       },
       {
-        id: "koszt-siewu-jesien",
-        name: "Koszt siewu zboża:",
-        placeholder: "koszt siewu",
+        id: "uprawa-przedsiewna",
+        name: "Uprawa przedsiewna:",
+        placeholder: "koszt uprawy",
+        unit: "zł/ha",
+      },
+      {
+        id: "siewnik-agregat",
+        name: "Siewnik lub agregat:",
+        placeholder: "koszt siewnika",
         unit: "zł/ha",
       },
     ],
@@ -353,7 +359,7 @@ function mainContentLoad() {
     "zł/ha",
     "",
     "all-check",
-    (a, b, c, d, e, f) => a + b + c + d + e + f
+    (a, b, c, d, e, f, g) => a + b + c + d + e + f + g
   );
   new CalculatorBlock(
     "#glifosat",
@@ -389,6 +395,53 @@ function mainContentLoad() {
     "",
     "one-check",
     (a, b, c, d) => a * b + c * d
+  );
+  new CalculatorBlock(
+    "#material-siewny",
+    "materiał siewny",
+    [
+      {
+        id: "cena-nasion-material",
+        name: "Cena nasion:",
+        placeholder: "za 1 kg lub js.",
+        unit: "zł/t",
+      },
+      {
+        id: "dawka-nasion-na-ha",
+        name: "Dawka nasion na ha:",
+        placeholder: "dawka kg lub js. na ha",
+        unit: "kg/ha",
+      },
+      {
+        id: "cena-nawozu-donas",
+        name: "Cena nawozu donasiennego:",
+        placeholder: "cena nawozu donasiennego",
+        unit: "zł/l, kg",
+      },
+      {
+        id: "dawka-nawozu-donas",
+        name: "Dawka nawozu donasiennego:",
+        placeholder: "dawka nawozu donasiennego",
+        unit: "l, kg/100 kg",
+      },
+      {
+        id: "Cena zaprawy nasiennej",
+        name: "Cena zaprawy nasiennej:",
+        placeholder: "cena zaprawy",
+        unit: "zł/l, kg",
+      },
+      {
+        id: "dawka-zaprawy",
+        name: "Dawka zaprawy:",
+        placeholder: "dawka zaprawy",
+        unit: "l, kg/100 kg",
+      },
+    ],
+    "Koszt nasion",
+    "zł/ha",
+    "",
+    "one-check",
+    (a, b, c, d, e, f) => (a * b) / 1000 + (c * d * b) / 100 + (e * f * b) / 100
   );
   new CalculatorBlock(
     "#zbior",
@@ -436,6 +489,41 @@ function mainContentLoad() {
     "",
     "no-check",
     (a, b, c, d, e, f) => a + b * c + d * (e - f)
+  );
+  new CalculatorBlock(
+    "#inne-koszty",
+    "inne koszty",
+    [
+      {
+        id: "tubezpieczen",
+        name: "Ubezpieczenie:",
+        placeholder: "koszt polisy na 1 ha",
+        unit: "zł/ha",
+      },
+      {
+        id: "podatek",
+        name: "Podatek gruntowy:",
+        placeholder: "stawka podatku",
+        unit: "zł/ha",
+      },
+      {
+        id: "czynsz",
+        name: "Czynsz dzierżawny:",
+        placeholder: "stawka czynszu na 1 ha",
+        unit: "zł/ha",
+      },
+      {
+        id: "inne",
+        name: "Inne koszty:",
+        placeholder: "inne koszty",
+        unit: "zł/ha",
+      },
+    ],
+    "Inne koszty",
+    "zł/ha",
+    "",
+    "one-check",
+    (a, b, c, d) => a + b + c + d
   );
   new CalculatorBlock(
     "#nawozenie-mineralne-zabieg",
